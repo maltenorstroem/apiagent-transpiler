@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>README!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
+
+    <!-- You need these imports to convert md to html, and do code highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    <!-- These is a default highlight.js theme. You can use a different one. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+
+    <!-- This is the bit of code that does the thing -->
+    <script src="do-md-to-html.js"></script>
+
+    <!-- This is the rest of your site specific stuff -->
+    <style>
+        body {
+            font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+            background-color: #F9F9F9;
+            margin: 3em;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        h1 {
+            color: #003070;
+            background-image: linear-gradient(90deg, #003070 0%, #355A8B 15%, #8198B6 30%, #CED6E1 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+            background-size: cover;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        hr {
+            width: 100px;
+            height: 6px;
+            background: #fcdadd;
+            border: none;
+            box-shadow: none;
+        }
+
+        code {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<!-- This is where the content will go. Don't touch it. -->
+<div id="content"></div>
+
+</body>
+</html>
