@@ -11,18 +11,18 @@ import (
 	"path/filepath"
 )
 
-type Entity struct{
-	Name			string
-	Description 	string
-	Type			string
-	Mandatory		bool
+type Entity struct {
+	Name        string
+	Description string
+	Type        string
+	Mandatory   bool
 }
 type EntityService struct {
-	Description 		string
-	FunctionName		string
-	Path				string
-	Params				string
-	Payload				string
+	Description  string
+	FunctionName string
+	Path         string
+	Params       string
+	Payload      string
 }
 
 func noescape(str string) template.HTML {
@@ -42,6 +42,8 @@ func main() {
 	var templateData map[string]interface{}
 	parseError := yaml.Unmarshal([]byte(dataBytes), &templateData) //reads yaml and json because json is just a subset of yaml
 	logIfErr(parseError)
+
+	// modify or replace templateData here
 
 	tmpl, templateError := template.New(filepath.Base(*flagTemplatePath)).Funcs(fn).ParseFiles(*flagTemplatePath)
 	logIfErr(templateError)
