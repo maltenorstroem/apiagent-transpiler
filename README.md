@@ -33,7 +33,7 @@ go get github.com/maltenorstroem/apiagent-transpiler
  apiagent-transpiler -d data.json -t template.xxx > target.file
  
  apiagent-transpiler -h  // help 
- Usage of ce-agent-transpiler:
+ Usage of apiagent-transpiler:
    -d string
           Path to data file which contains YAML or JSON
    -t string
