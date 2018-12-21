@@ -33,7 +33,7 @@ class {{ range $key, $service := .services }}{{$service.name}}{{end}}List extend
         return {
             /**
              * Collection Model
-             * Type TaskCollection with TaskEntity inside
+             * Array of entities
              */
             list: {
                 type: Array,

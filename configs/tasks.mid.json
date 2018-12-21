@@ -1,0 +1,274 @@
+{
+  "package": "task",
+
+  "major_version": "1",
+  "description": "Interface Definitonen für das Modul Task \nZweck diese Moduls ist es sowas wie eine TO-DO Liste zu haben",
+  "__proto": {
+    "messages_source_repo": "git.adcubum.com/tasks/protobuf/messages",
+    "services_source_repo": "git.adcubum.com/tasks/protobuf/services",
+    "messages_imports": [
+      "google/api/annotations.proto",
+      "google/protobuf/timestamp.proto",
+      "github.com/gogo/protobuf/gogoproto/gogo.proto"
+    ],
+    "services_imports": [
+      "google/api/annotations.proto",
+      "mid_generates/messages.proto"
+    ],
+    "options": [
+      {
+        "key": "go_package",
+        "value": "task"
+      },
+      {
+        "key": "cc_enable_arenas",
+        "value": "true"
+      },
+      {
+        "key": "java_multiple_files",
+        "value": "true"
+      },
+      {
+        "key": "java_outer_classname",
+        "value": "HttpProto"
+      },
+      {
+        "key": "java_package",
+        "value": "com.google.api"
+      },
+      {
+        "key": "objc_class_prefix",
+        "value": "GAPI"
+      }
+    ]
+  },
+  "services": [
+    {
+      "name": "TaskService",
+      "description": "Beschreibung der Services \n Neue Zeile",
+      "methods": [
+        {
+          "name": "CreateTask",
+          "description": "Erstellen eines neuen Tasks",
+          "input_type": "CreateTaskRequest",
+          "output_type": "TaskEntity",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "post",
+                  "value": "/tasks"
+                },
+                {
+                  "key": "body",
+                  "value": "item"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GetTask",
+          "description": "Abfragen eines Tasks",
+          "input_type": "GetTaskRequest",
+          "output_type": "TaskEntity",
+          "options": [
+            {
+            "name": "google.api.http",
+            "vars": [
+              {
+                "key": "get",
+                "value": "/tasks/{id}"
+              }
+            ]
+          }
+          ]
+        },
+        {
+          "name": "ListTask",
+          "description": "Abfragen der Taskliste",
+          "input_type": "ListTaskRequest",
+          "output_type": "TaskCollection",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "get",
+                  "value": "/tasks"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DeleteTask",
+          "description": "Löschen eines Tasks \nNicht widerrufbar",
+          "input_type": "DeleteTaskRequest",
+          "output_type": "DeleteTaskResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "delete",
+                  "value": "/tasks/{id}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "UpdateTask",
+          "description": "Aktualiseren eines Tasks",
+          "input_type": "UpdateTaskRequest",
+          "output_type": "TaskEntity",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "put",
+                  "value": "/tasks/{id}"
+                },
+                {
+                  "key": "body",
+                  "value": "item"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CompleteTask",
+          "description": "Benutzerdefinierte Methode um einen Task direkt als abgeschlossen zu setzen",
+          "input_type": "GetTaskRequest",
+          "output_type": "TaskEntity",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "post",
+                  "value": "/tasks/{id}:complete"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SuspendTask",
+          "description": "Benutzerdefinierte Methode um einen Task zu sistieren. Mit Body Payload",
+          "input_type": "GetTaskRequest",
+          "output_type": "TaskEntity",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "post",
+                  "value": "/tasks/{id}:complete"
+                },
+                {
+                  "key": "body",
+                  "value": "special"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "enum_types": [
+    {
+      "name": "Complete",
+      "description": "Unkown mit 0 ist bewusst. So können wir feststellen ob ein Wert auch wirklich gesetzt wurde \n Neue Zeile",
+      "value": [
+        {
+          "name": "UNKNOWN",
+          "description": "Zustand unbekannt oder nicht gesetzt",
+          "number": 0
+        },
+        {
+          "name": "RUNNING",
+          "description": "Task läuft",
+          "number": 1
+        },
+        {
+          "name": "COMPLETED",
+          "description": "Task abgeschlossen",
+          "number": 2
+        }
+      ]
+    }
+  ],
+  "entity": [
+    {
+      "name": "id",
+      "description": "für IDs werden wir intern ulid verwenden",
+      "type": "string",
+      "default": "''",
+      "mandatory": false,
+      "min": 5,
+      "max": 100
+    },
+    {
+      "name": "title",
+      "description": "Einzeilige Beschreibung des Tasks.",
+      "type": "string",
+      "default": "''",
+      "mandatory": true,
+      "min": 5,
+      "max": 100
+    },
+    {
+      "name": "description",
+      "description": "Beschreibung des Tasks",
+      "type": "string",
+      "default": "''",
+      "mandatory": false,
+      "min": 5,
+      "max": 100
+    }
+  ],
+  "types": [
+    {
+      "name": "CreateTaskRequest",
+      "description": "Ereignisse welche von der Galerie erkannt wurden \nDie Funktion ist nur gefaket \nDas ist ein test von mutilines",
+      "fields": [
+        {
+          "name": "id",
+          "description": "für IDs werden wir intern ulid verwenden",
+          "type": "ulid",
+          "mandatory": false,
+          "__proto": {
+            "type": "string",
+            "number": 1
+          }
+        },
+        {
+          "name": "title",
+          "description": "Einzeilige Beschreibung des Tasks",
+          "type": "string",
+          "mandatory": false,
+          "__proto": {
+            "type": "string",
+            "number": 2
+          }
+        },
+        {
+          "name": "description",
+          "description": "Beschreibung des Tasks",
+          "type": "string",
+          "mandatory": false,
+          "__proto": {
+            "type": "string",
+            "number": 3
+          }
+        }
+      ]
+    }
+  ]
+}

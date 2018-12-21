@@ -1,0 +1,323 @@
+{
+  "package": "tags",
+  "major_version": "1",
+  "description": "Interface Definitonen für die Entity Tags \nVerwaltet Tags",
+  "__proto": {
+    "messages_source_repo": "git.adcubum.com/tasks/protobuf/messages",
+    "services_source_repo": "git.adcubum.com/tasks/protobuf/services",
+    "messages_imports": [
+      "google/api/annotations.proto",
+      "google/protobuf/timestamp.proto",
+      "github.com/gogo/protobuf/gogoproto/gogo.proto",
+      "protobuf/task-api/rest.proto"
+    ],
+    "services_imports": [
+      "google/api/annotations.proto",
+      "mid_generates/tagmessages.proto",
+      "protobuf/task-api/rest.proto"
+    ],
+    "options": [
+      {
+        "key": "go_package",
+        "value": "task"
+      },
+      {
+        "key": "cc_enable_arenas",
+        "value": true
+      },
+      {
+        "key": "java_multiple_files",
+        "value": true
+      },
+      {
+        "key": "java_outer_classname",
+        "value": "HttpProto"
+      },
+      {
+        "key": "java_package",
+        "value": "com.google.api"
+      },
+      {
+        "key": "objc_class_prefix",
+        "value": "GAPI"
+      }
+    ]
+  },
+  "services": [
+    {
+      "name": "TagService",
+      "description": "Verwaltet Tags nach der Methode XY",
+      "methods": [
+        {
+          "name": "CreateTag",
+          "description": "Erstellt einen neuen Tag",
+          "input_type": "Tag",
+          "output_type": "TagEntityResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "post",
+                  "value": "/v1/tags"
+                },
+                {
+                  "key": "body",
+                  "value": "item"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GetTag",
+          "description": "Abfragen eines Tags",
+          "input_type": "Tag",
+          "output_type": "TagEntityResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "get",
+                  "value": "/v1/tags/{id}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ListAllTags",
+          "description": "Abfragen aller Tags",
+          "input_type": "ListParams",
+          "output_type": "TagCollectionResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "get",
+                  "value": "/v1/tags"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ListTagsFromTask",
+          "description": "Abfragen aller Tags eines Tasks",
+          "input_type": "ListParams",
+          "output_type": "TagCollectionResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "get",
+                  "value": "/v1/{parent=tasks/*}/tags"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DeleteTag",
+          "description": "Löschen eines Tags",
+          "input_type": "Tag",
+          "output_type": "TagEntityResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "delete",
+                  "value": "/v1/tags/{id}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "UpdateTag",
+          "description": "Aktualisert einen Tag",
+          "input_type": "Tag",
+          "output_type": "TagEntityResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "put",
+                  "value": "/tags/{id}"
+                },
+                {
+                  "key": "body",
+                  "value": "item"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "doSomething",
+          "description": "Irgendeine Custom Function mit KeyValue Params",
+          "input_type": "CustomParams",
+          "output_type": "TagEntityResponse",
+          "options": [
+            {
+              "name": "google.api.http",
+              "vars": [
+                {
+                  "key": "put",
+                  "value": "/tags/{id}:doSomething"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "enum_types": [],
+  "entity": [
+    {
+      "name": "id",
+      "description": "für IDs werden wir intern ulid verwenden",
+      "type": "string",
+      "default": "''",
+      "mandatory": false,
+      "min": 5,
+      "max": 100
+    },
+    {
+      "name": "label",
+      "description": "Taglabel wird als Standardrepräsentation verwendet.",
+      "type": "string",
+      "default": "''",
+      "mandatory": true,
+      "min": 5,
+      "max": 100
+    },
+    {
+      "name": "brailleLabel",
+      "description": "Taglabel in der Braille-Schreibweise",
+      "type": "string",
+      "default": "''",
+      "mandatory": false,
+      "min": 5,
+      "max": 100
+    }
+  ],
+  "types": [
+    {
+      "name": "Tag",
+      "description": "Tag Entitytyp. Datenmodel eines Tags",
+      "fields": [
+        {
+          "name": "id",
+          "description": "für IDs werden wir intern ulid verwenden",
+          "type": "ulid",
+          "mandatory": false,
+          "__proto": {
+            "type": "string",
+            "number": 1,
+            "options": [
+              {
+                "name": "gogoproto.moretags",
+                "key": "db",
+                "value": "id,pk,omitempty"
+              }
+            ]
+          }
+        },
+        {
+          "name": "label",
+          "description": "Taglabel wird als Standardrepräsentation verwendet.",
+          "type": "string",
+          "repeated": false,
+          "mandatory": true,
+          "__proto": {
+            "type": "string",
+            "number": 2
+          },
+          "__sqlite": {
+            "type": "TEXT"
+          }
+        },
+        {
+          "name": "brailleLabel",
+          "description": "Taglabel in der Braille-Schreibweise",
+          "type": "string",
+          "repeated": false,
+          "mandatory": true,
+          "__proto": {
+            "type": "string",
+            "number": 3
+          },
+          "__sqlite": {
+            "type": "TEXT"
+          }
+        }
+      ]
+    },
+    {
+      "name": "TagEntityResponse",
+      "description": "Response-Message einer Anfrage nach Tags",
+      "fields": [
+        {
+          "name": "item",
+          "description": "Datenmodel vom Typ Tag",
+          "type": "Tag",
+          "mandatory": false,
+          "__proto": {
+            "type": "Tag",
+            "number": 1,
+            "options": []
+          }
+        },
+        {
+          "name": "links",
+          "description": "Hateoasinformationen",
+          "type": "Link",
+          "mandatory": false,
+          "__proto": {
+            "repeated": true,
+            "type": "Link",
+            "number": 2,
+            "options": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "TagCollectionResponse",
+      "description": "Response-Message einer List Abfrage nach Tags",
+      "fields": [
+        {
+          "name": "data",
+          "description": "Datenmodel vom Typ TagEntityResponse",
+          "type": "TagEntityResponse",
+          "mandatory": false,
+          "__proto": {
+            "repeated": true,
+            "type": "TagEntityResponse",
+            "number": 1,
+            "options": []
+          }
+        },
+        {
+          "name": "links",
+          "description": "Hateoasinformationen",
+          "type": "Link",
+          "mandatory": false,
+          "__proto": {
+            "repeated": true,
+            "type": "Link",
+            "number": 2,
+            "options": []
+          }
+        }
+      ]
+    }
+  ]
+}

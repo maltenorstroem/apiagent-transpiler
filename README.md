@@ -9,11 +9,19 @@ Big thanx to Veith
 ```
 Built to customize the templateMap to your needs - In this case for a rest api communication web component
 
+
+## Project structure
+* [build] includes builded transpilers
+* [configs] includes `your multi interface description files (mid.json)
+* [deployments] home of the generated agent components
+* [scripts] helper scripts
+* [assets] agent and collection template
+
 ## Dokumentation 
 
 follows
 
-# Install
+## Install
 
 If you have Go installed:
 
@@ -21,11 +29,12 @@ If you have Go installed:
 go get github.com/maltenorstroem/apiagent-transpiler
 ```
 
-# Usage
+## Usage
 
 * Build templates for entity & collection
 * Define your mulit interface description file
-* generate component
+* generate components => `./scripts/generateAgents.sh`
+
 
 ```
 
