@@ -1,4 +1,4 @@
-# WIP apiagent-transpiler
+# apiagent-transpiler [WIP]
 
 Transpiles Multi Interface Description Files (json) to api-agent custom element (v1)
 Works with JSON or YMAL as input data format **only**
@@ -19,7 +19,7 @@ Built to customize the templateMap to your needs - In this case for a rest api c
 
 ## Dokumentation 
 
-follows
+This transpiler creates the client-side communication components based on a meta description of a service. The components can be adapted to the desired requirements using a template.
 
 ## Install
 
